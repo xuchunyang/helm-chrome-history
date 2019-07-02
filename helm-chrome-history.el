@@ -115,7 +115,11 @@
 (defun helm-chrome-history-clear-cache ()
   "Clear `helm-chrome-history' cache."
   (interactive)
-  (setq helm-chrome-history-candidates nil))
+  (cond (helm-chrome-history-candidates
+         (setq helm-chrome-history-candidates nil)
+         (message "[helm-chrome-history] Cache is cleared"))
+        (t
+         (user-error "[helm-chrome-history] Cache is already empty"))))
 
 ;;;###autoload
 (defun helm-chrome-history ()
