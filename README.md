@@ -2,6 +2,8 @@
 
 Browse your Chrome history with Helm.
 
+![a screenshot of helm-chrome-history](helm-chrome-history.png)
+
 ## Requirements
 
 - Emacs >= 25.1
