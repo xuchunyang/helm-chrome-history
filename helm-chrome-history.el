@@ -68,7 +68,7 @@
             (while (re-search-forward (rx (group (+? anything)) "\x1e") nil t)
               (push (split-string (match-string 1) "\x1f") result))
             (delete-file tmp)
-            (nreverse result))
+            result)
         (error "Command sqlite3 failed: %s" (buffer-string))))))
 
 (defvar helm-chrome-history-candidates nil
