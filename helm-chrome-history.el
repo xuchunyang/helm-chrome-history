@@ -3,7 +3,7 @@
 ;; Copyright (C) 2019  Xu Chunyang
 
 ;; Author: Xu Chunyang <mail@xuchunyang.me>
-;; Homepage: https://github.com/xuchunyang/helm-chrome-history.el
+;; Homepage: https://github.com/xuchunyang/helm-chrome-history
 ;; Package-Requires: ((emacs "25.1") (helm-core "3.0"))
 ;; Keywords: tools
 ;; Version: 0
