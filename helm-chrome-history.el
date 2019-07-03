@@ -49,7 +49,8 @@
        "$USERPROFILE/Local Settings/Application Data/Google/Chrome/User Data/Default/History")))
   "Chrome history SQLite database file.")
 
-(defvar helm-chrome-history-sql "select url, title, last_visit_time from urls"
+(defvar helm-chrome-history-sql
+  "SELECT id, url, title, last_visit_time FROM urls ORDER BY id DESC LIMIT 100000"
   "The SQL used to extract history.
 
 If you have too many history and worry about the memory use,
@@ -77,7 +78,7 @@ Don't change \"select url, title, last_visit_time\" part.")
             (while (re-search-forward (rx (group (+? anything)) "\x1e") nil t)
               (push (split-string (match-string 1) "\x1f") result))
             (delete-file tmp)
-            result)
+            (nreverse result))
         (error "Command sqlite3 failed: %s" (buffer-string))))))
 
 (defvar helm-chrome-history-candidates nil
