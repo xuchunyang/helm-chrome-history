@@ -24,3 +24,7 @@ Clear `helm-chrome-history` cache.
 ### `helm-chrome-history-file`
 
 Your Chrome History SQLite database file.
+
+### `helm-chrome-history-sql`
+
+The SQL used to extract history.
