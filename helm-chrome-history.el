@@ -49,6 +49,15 @@
        "$USERPROFILE/Local Settings/Application Data/Google/Chrome/User Data/Default/History")))
   "Chrome history SQLite database file.")
 
+(defvar helm-chrome-history-sql "select url, title, last_visit_time from urls"
+  "The SQL used to extract history.
+
+If you have too many history and worry about the memory use,
+consider adjusting the SQL.  For your reference, I have 41525
+history and it takes about 7.4M memory in Emacs.
+
+Don't change \"select url, title, last_visit_time\" part.")
+
 (defun helm-chrome-history-file-read ()
   (pcase helm-chrome-history-file
     ('nil (user-error "`helm-chrome-history-file' is not set"))
@@ -61,7 +70,7 @@
            (call-process "sqlite3" nil t nil
                          "-ascii"
                          tmp
-                         "select url, title, last_visit_time from urls"))
+                         helm-chrome-history-sql))
           (let (result)
             (goto-char (point-min))
             ;; -ascii delimited by 0x1F and 0x1E
