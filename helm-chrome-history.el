@@ -60,6 +60,7 @@ history and it takes about 7.4M memory in Emacs.
 Don't change \"select url, title, last_visit_time\" part.")
 
 (defun helm-chrome-history-file-read ()
+  "Read `helm-chrome-history-file'."
   (pcase helm-chrome-history-file
     ('nil (user-error "`helm-chrome-history-file' is not set"))
     ((pred file-exists-p) nil)
@@ -85,6 +86,7 @@ Don't change \"select url, title, last_visit_time\" part.")
   "The `helm-chrome-history' cache.")
 
 (defun helm-chrome-history-candidates ()
+  "Build helm candidates."
   (unless helm-chrome-history-candidates
     (message "[helm-chrome-history] Building cache...")
     (setq helm-chrome-history-candidates
@@ -114,12 +116,14 @@ Don't change \"select url, title, last_visit_time\" part.")
    "Copy Url"
    (lambda (url)
      (kill-new url)
-     (message "`%s' copied to kill-ring" url))))
+     (message "`%s' copied to kill-ring" url)))
+  "Helm actions for `helm-chrome-history'.")
 
 (defvar helm-chrome-history-source
   (helm-build-sync-source "Chrome History"
     :candidates #'helm-chrome-history-candidates
-    :action helm-chrome-history-action))
+    :action helm-chrome-history-action)
+  "Helm source for `helm-chrome-history'.")
 
 ;;;###autoload
 (defun helm-chrome-history-clear-cache ()
