@@ -50,7 +50,7 @@
   "Chrome history SQLite database file.")
 
 (defvar helm-chrome-history-sql
-  "SELECT id, url, title, last_visit_time FROM urls ORDER BY id DESC LIMIT 100000"
+  "SELECT url, title, last_visit_time FROM urls ORDER BY id DESC LIMIT 100000"
   "The SQL used to extract history.
 
 If you have too many history and worry about the memory use,
