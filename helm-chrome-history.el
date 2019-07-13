@@ -109,14 +109,7 @@ Don't change \"select url, title, last_visit_time\" part.")
   helm-chrome-history-candidates)
 
 (defvar helm-chrome-history-action
-  (helm-make-actions
-   "Browse URL"
-   (lambda (candidate)
-     (browse-url candidate))
-   "Copy URL"
-   (lambda (url)
-     (kill-new url)
-     (message "`%s' copied to kill-ring" url)))
+  '(("Browse URL" . browse-url) ("Copy URL" . kill-new))
   "Helm actions for `helm-chrome-history'.")
 
 (defvar helm-chrome-history-source
