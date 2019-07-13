@@ -110,10 +110,10 @@ Don't change \"select url, title, last_visit_time\" part.")
 
 (defvar helm-chrome-history-action
   (helm-make-actions
-   "Browse Url"
+   "Browse URL"
    (lambda (candidate)
      (browse-url candidate))
-   "Copy Url"
+   "Copy URL"
    (lambda (url)
      (kill-new url)
      (message "`%s' copied to kill-ring" url)))
@@ -137,7 +137,7 @@ Don't change \"select url, title, last_visit_time\" part.")
 
 ;;;###autoload
 (defun helm-chrome-history ()
-  "Brwose Chrome History with helm."
+  "Browse Chrome History with helm."
   (interactive)
   (helm :sources helm-chrome-history-source
         :buffer "*Helm Chrome History*"))
