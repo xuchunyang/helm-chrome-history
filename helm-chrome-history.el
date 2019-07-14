@@ -38,7 +38,8 @@
   (seq-find
    #'file-exists-p
    `("~/Library/Application Support/Google/Chrome/Profile 1/History"
-     ;; The following are based on `helm-chrome-file'
+     ;; The following is based on the `helm-chrome-file' variable from
+     ;; https://github.com/kawabata/helm-chrome
      "~/Library/Application Support/Google/Chrome/Default/History"
      "~/AppData/Local/Google/Chrome/User Data/Default/History"
      "~/.config/google-chrome/Default/History"
