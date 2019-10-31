@@ -34,20 +34,25 @@
   (require 'subr-x)
   (require 'url-parse))
 
-(defvar helm-chrome-history-file
-  (seq-find
-   #'file-exists-p
-   `("~/Library/Application Support/Google/Chrome/Profile 1/History"
-     ;; The following is based on the `helm-chrome-file' variable from
-     ;; https://github.com/kawabata/helm-chrome
-     "~/Library/Application Support/Google/Chrome/Default/History"
-     "~/AppData/Local/Google/Chrome/User Data/Default/History"
-     "~/.config/google-chrome/Default/History"
-     "~/.config/chromium/Default/History"
-     ,(substitute-in-file-name
-       "$LOCALAPPDATA/Google/Chrome/User Data/Default/History")
-     ,(substitute-in-file-name
-       "$USERPROFILE/Local Settings/Application Data/Google/Chrome/User Data/Default/History")))
+(defun helm-chrome-guess-history-file ()
+  (car
+   (seq-sort
+    #'file-newer-than-file-p
+    (seq-filter
+     #'file-exists-p
+     `("~/Library/Application Support/Google/Chrome/Profile 1/History"
+       ;; The following is based on the `helm-chrome-file' variable from
+       ;; https://github.com/kawabata/helm-chrome
+       "~/Library/Application Support/Google/Chrome/Default/History"
+       "~/AppData/Local/Google/Chrome/User Data/Default/History"
+       "~/.config/google-chrome/Default/History"
+       "~/.config/chromium/Default/History"
+       ,(substitute-in-file-name
+         "$LOCALAPPDATA/Google/Chrome/User Data/Default/History")
+       ,(substitute-in-file-name
+         "$USERPROFILE/Local Settings/Application Data/Google/Chrome/User Data/Default/History"))))))
+
+(defvar helm-chrome-history-file (helm-chrome-guess-history-file)
   "Chrome history SQLite database file.")
 
 (defvar helm-chrome-history-sql
